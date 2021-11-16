@@ -71,8 +71,8 @@ class Blogs(db.Model):
     def __repr__(self):
         return f"Blogs {self.blog}','{self.date}')"  
 class Quote:
-    def __init__(self,id,author,quote):
-        self.id =id
+    def __init__(self,author,quote):
+        
         self.author = author
         self.quote = quote
 

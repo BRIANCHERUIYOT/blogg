@@ -31,7 +31,7 @@
                       <li style="font-size: 18px" ><a href="{{url_for('main.profile',uname=current_user.author)}}"><i class="user"></i>VIEW PROFILE</a></li>
                       <li style="font-size: 18px"><a href="{{url_for('auth.logout')}}" >SIGN OUT</a></li>
                       {% else %}
-                      <li style="font-size: 18px"><a href="{{url_for('auth.login')}}">SIGN IN</a></li>
+                      <li style="font-size: 18px"><a href="{{url_for('.subBlog')}}">SIGN IN</a></li>
 
                       {%endif%}
                     </ul>

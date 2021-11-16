@@ -28,11 +28,11 @@
       </div>
       
       <div style="font-size: 30px; font-family: 'Merienda', cursive;  padding-top: 40px; text-align: center;">
-        {% for quote in getquotes %}
-        <p>{{quote.quote}}</p>
-        <p class="text-primary" style="text-align: center;font-family: 'Special Elite', cursive;"> By: {{quote.author}}</p>
+      
+        <p>{{getquotes.quote}}</p>
+        <p class="text-primary" style="text-align: center;font-family: 'Special Elite', cursive;"> By: {{getquotes.author}}</p>
         <button type="button" class="btn btn-outline-primary" style="font-size: xx-large;background-color: turquoise;"><a href="{{url_for('main.category')}}">OPEN</a></button>
-        {% endfor %}
+      
     
     </div>
     </div>

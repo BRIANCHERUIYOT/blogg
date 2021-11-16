@@ -1,23 +1,13 @@
-import json
+import requests
 from .models import Quote
-from app import requests
 
-# Getting the quote base url
-base_url=None
 
-def configure_request(app):
-    global base_url
-    base_url = app.config['BASE_URL']
-    
-def getQuotes(): 
-    
-        lll = requests.get(base_url).json()
-       
-        r = []
-        id = lll.get('id')
-        author = lll.get('author')
-        quote = lll.get('quote')
+api = "http://quotes.stormconsultancy.co.uk/random.json"
 
-        quoteObject = Quote(id,author,quote)
-        r.append(quoteObject)
-        return r
+
+def getQuotes():
+    random_quote = requests.get(api).json()
+
+    quote = Quote(random_quote.get('author'), random_quote.get('quote'))
+
+    return quote
