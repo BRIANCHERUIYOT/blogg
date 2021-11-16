@@ -1,5 +1,6 @@
-import requests,json
+import json
 from .models import Quote
+from app import requests
 
 # Getting the quote base url
 base_url=None
