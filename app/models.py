@@ -10,7 +10,34 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-   
+class Blogs(db.Model):
+
+    __tablename__ = 'blogs'
+
+    id = db.Column(db.Integer,primary_key=True)
+    title = db.Column(db.String(255))
+    category = db.Column(db.String(255))
+    blog = db.Column(db.String(255))
+    date = db.Column(db.DateTime(250), default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id",ondelete='CASCADE'), nullable=False)
+    comments = db.relationship('Comments', backref='title', lazy='dynamic')
+
+    def save_blog(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def deleteblog(self):
+        db.session.delete(self)
+        db.session.commit() 
+
+    @classmethod
+    def get_blogs(cls):
+        blog = Blogs.query.all()
+        return blog
+
+
+    def __repr__(self):
+        return f"Blogs {self.blog}','{self.date}')"     
 
 
 class User(UserMixin,db.Model):
@@ -42,37 +69,9 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User {self.author}'
 
-class Blogs(db.Model):
-    
-    __tablename__ = 'blogs'
-
-    id = db.Column(db.Integer,primary_key=True)
-    title = db.Column(db.String(255))
-    category = db.Column(db.String(255))
-    blog = db.Column(db.String(255))
-    date = db.Column(db.DateTime(250), default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id",ondelete='CASCADE'), nullable=False)
-    comments = db.relationship('Comments', backref='title', lazy='dynamic')
-
-    def save_blog(self):
-        db.session.add(self)
-        db.session.commit()
-
-    def deleteblog(self):
-        db.session.delete(self)
-        db.session.commit() 
-
-    @classmethod
-    def get_blogs(cls):
-        blog = Blogs.query.all()
-        return blog
-
-
-    def __repr__(self):
-        return f"Blogs {self.blog}','{self.date}')"  
 class Quote:
-    def __init__(self,author,quote):
-        
+    def __init__(self,id,author,quote):
+        self.id =id
         self.author = author
         self.quote = quote
 

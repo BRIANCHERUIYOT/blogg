@@ -3,7 +3,7 @@ from flask import render_template,request,redirect,url_for, abort,flash
 from ..models import Blogs,Role,User,Comments,Subscriber
 from .. import db,photos
 from . import main
-from ..emails import mail_message
+from ..email import mail_message
 from .forms import BlogsForm,CommentForm,UpdateProfile,SubscriberForm
 from ..requests import getQuotes
 
@@ -127,7 +127,7 @@ def deleteComment(id):
     comment =Comments.query.get_or_404(id)
     db.session.delete(comment)
     db.session.commit()
-    # flash('comment succesfully deleted')  
+    # flash('comment succesfully deleted')
     return redirect (url_for('main.index'))
 
 
