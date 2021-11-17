@@ -26,9 +26,9 @@ def register():
     if form.validate_on_submit():
         user = User(email = form.email.data, author = form.username.data,password = form.password.data)
         db.session.add(user)
-        db.session.commit(user)
+        db.session.commit()
 
-        mail_message("Welcome to my Blog website","email/welcome_user",user.email,user=user)
+        # mail_message("Welcome to my Blog website","email/welcome_user",user.email,user=user)
 
         return redirect(url_for('auth.login'))
         title = "New Account"
