@@ -34,7 +34,7 @@ def new_blog():
 def index():
 
     getquotes = getQuotes()
-    message= "Welcome to Blog Website!!"
+    message= "Welcome to BlOGG!!"
     title= 'Blog-web!'
     return render_template('index.html',getquotes = getquotes,message=message,title=title)
 
